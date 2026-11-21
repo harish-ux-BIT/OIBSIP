@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temperature Converter</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after 
+{ 
+box-sizing: border-box; 
+}
+body {
+margin: 0;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+line-height: 1.6;
+color: #334155;
+background-color: #F8FAFC;
+}
+.converter {
+width: 100%;
+max-width: 460px;
+background-color: #FFFFFF;
+border-radius: 16px;
+padding: 32px 28px;
+box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+}
+h1 {
+font-family: 'Poppins', sans-serif;
+font-size: 30px;
+color: #0F172A;
+text-align: center;
+margin: 0 0 8px;
+}
+.tagline {
+text-align: center;
+margin: 0 0 28px;
+}
+label {
+display: block;
+font-weight: 600;
+color: #0F172A;
+margin-bottom: 6px;
+}
+input, select {
+width: 100%;
+padding: 12px 14px;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+border: 2px solid #CBD5E1;
+border-radius: 8px;
+background-color: #FFFFFF;
+margin-bottom: 18px;
+}
+input:focus, select:focus {
+outline: none;
+border-color: #14B8A6;
+}
+input.invalid 
+{ 
+border-color: #DC2626; 
+}
+.error {
+color: #DC2626;
+font-size: 14px;
+font-weight: 600;
+min-height: 22px;
+margin: -10px 0 12px;
+}
+button {
+width: 100%;
+padding: 14px;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+font-weight: 600;
+color: #FFFFFF;
+background-color: #14B8A6;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+}
+button:hover 
+{ 
+background-color: #0D9488; 
+}
+.results {
+margin-top: 24px;
+display: none;
+}
+.results h2 {
+font-family: 'Poppins', sans-serif;
+font-size: 18px;
+color: #0F172A;
+margin: 0 0 12px;
+}
+.result-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #F1F5F9;
+border-radius: 8px;
+padding: 12px 16px;
+margin-bottom: 8px;
+}
+.result-row span 
+{ 
+font-weight: 600; 
+}
+.result-row strong {
+font-family: 'Poppins', sans-serif;
+color: #0D9488;
+font-size: 18px;
+}
+@media (max-width: 480px) {
+.converter 
+{ 
+padding: 24px 18px; 
+}
+h1 
+{ 
+font-size: 24px; 
+}
+}
+</style>
+</head>
+<body>
+<main class="converter">
+<h1>Temperature Converter</h1>
+<p class="tagline">Convert between Celsius, Fahrenheit and Kelvin.</p>
+<form id="form" novalidate>
+<label for="value">Temperature</label>
+<input type="text" id="value" inputmode="decimal" placeholder="Enter a number, e.g. 36.6" autocomplete="off">
+<label for="unit">Convert from</label>
+<select id="unit">
+<option value="C">Celsius (°C)</option>
+<option value="F">Fahrenheit (°F)</option>
+<option value="K">Kelvin (K)</option>
+</select>
+<p class="error" id="error" role="alert"></p>
+<button type="submit">Convert</button>
+</form>
+<section class="results" id="results">
+<h2>Result</h2>
+<div class="result-row"><span>Celsius</span><strong id="outC"></strong></div>
+<div class="result-row"><span>Fahrenheit</span><strong id="outF"></strong></div>
+<div class="result-row"><span>Kelvin</span><strong id="outK"></strong></div>
+</section>
+</main>
+<script>
+const form = document.getElementById("form");
+const valueInput = document.getElementById("value");
+const unitSelect = document.getElementById("unit");
+const errorBox = document.getElementById("error");
+const results = document.getElementById("results");
+const numberPattern = /^[+-]?(\d+\.?\d*|\.\d+)$/;
+
+function showError(message) {
+errorBox.textContent = message;
+valueInput.classList.add("invalid");
+results.style.display = "none";
+}
+
+function clearError() {
+errorBox.textContent = "";
+valueInput.classList.remove("invalid");
+}
+
+function toKelvin(value, unit) {
+if (unit === "C") return value + 273.15;
+if (unit === "F") return (value - 32) * 5 / 9 + 273.15;
+return value;
+}
+
+function format(number) {
+let rounded = parseFloat(number.toFixed(2));
+if (Object.is(rounded, -0)) rounded = 0;
+return rounded;
+}
+
+valueInput.addEventListener("input", function () {
+const text = valueInput.value.trim();
+if (text === "" || numberPattern.test(text)) {
+clearError();
+} else {
+showError("Please enter a valid number (digits only, e.g. 25 or -4.5).");
+}
+});
+
+unitSelect.addEventListener("change", function () {
+clearError();
+results.style.display = "none";
+});
+
+form.addEventListener("submit", function (event) {
+event.preventDefault();
+const text = valueInput.value.trim();
+if (text === "") {
+showError("Please enter a temperature value.");
+return;
+}
+if (!numberPattern.test(text)) {
+showError("Please enter a valid number (digits only, e.g. 25 or -4.5).");
+return;
+}
+const value = parseFloat(text);
+const unit = unitSelect.value;
+const kelvin = toKelvin(value, unit);
+if (kelvin < -1e-9) {
+showError("Below absolute zero! Nothing can be colder than 0 K (-273.15 °C / -459.67 °F).");
+return;
+}
+clearError();
+const celsius = kelvin - 273.15;
+const fahrenheit = celsius * 9 / 5 + 32;
+document.getElementById("outC").textContent = format(celsius) + " °C";
+document.getElementById("outF").textContent = format(fahrenheit) + " °F";
+document.getElementById("outK").textContent = format(kelvin) + " K";
+results.style.display = "block";
+});
+</script>
+</body>
+</html>
