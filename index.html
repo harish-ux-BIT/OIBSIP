@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREWBOX | Fresh Coffee, Delivered Monthly</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after 
+{ 
+box-sizing: border-box; 
+}
+html 
+{ 
+scroll-behavior: smooth; 
+}
+body {
+margin: 0;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+line-height: 1.6;
+background-color: #FFF8F0;
+color: #333333;
+}
+h1, h2, h3 {
+font-family: 'Poppins', sans-serif;
+color: #3E2723;
+margin: 0 0 16px;
+line-height: 1.2;
+}
+h1 
+{
+font-size: 48px;
+}
+h2
+{
+font-size: 34px;
+text-align: center;
+}
+h3
+{ 
+font-size: 20px; 
+}
+p 
+{ 
+color: #333333; 
+margin: 0 0 16px; 
+}
+a 
+{ 
+text-decoration: none; 
+}
+.container {
+width: 100%;
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 20px;
+}
+.section 
+{ 
+padding: 80px 0; 
+}
+.section-intro {
+text-align: center;
+max-width: 600px;
+margin: 0 auto 48px;
+}
+nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background-color: #3E2723;
+}
+.nav-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 8px 24px;
+padding: 16px 20px;
+}
+.logo {
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+font-size: 22px;
+color: #C68642;
+letter-spacing: 1px;
+}
+.nav-links {
+display: flex;
+flex-wrap: wrap;
+gap: 8px 24px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+.nav-links a {
+color: #FFF8F0;
+font-weight: 600;
+font-size: 15px;
+}
+.nav-links a:hover 
+{ 
+color: #C68642; 
+}
+.hero {
+text-align: center;
+padding: 100px 20px;
+}
+.hero h1 
+{ 
+margin-bottom: 16px; 
+}
+.subheadline {
+font-size: 18px;
+max-width: 600px;
+margin: 0 auto 32px;
+}
+.cta {
+display: inline-block;
+background-color: #C68642;
+color: #FFFFFF;
+border: none;
+padding: 14px 32px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 16px;
+border-radius: 6px;
+cursor: pointer;
+}
+.cta:hover 
+{ 
+background-color: #A86F33; 
+}
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 24px;
+}
+.card {
+background-color: #FFFFFF;
+border-radius: 12px;
+padding: 32px 24px;
+box-shadow: 0 4px 14px rgba(62, 39, 35, 0.08);
+text-align: center;
+}
+.card .icon {
+font-size: 36px;
+margin-bottom: 12px;
+}
+ .card p 
+{ 
+margin-bottom: 0; 
+}
+.about 
+{ 
+background-color: #F3E5D3; 
+}
+.about-inner {
+display: flex;
+flex-wrap: wrap;
+gap: 32px;
+align-items: center;
+}
+.about-text 
+{ 
+flex: 1 1 320px; 
+}
+.about-text h2 
+{ 
+text-align: left; 
+}
+.about-stats {
+flex: 1 1 280px;
+display: flex;
+flex-wrap: wrap;
+gap: 16px;
+}
+.stat {
+flex: 1 1 120px;
+background-color: #3E2723;
+border-radius: 12px;
+padding: 24px 16px;
+text-align: center;
+}
+.stat strong {
+display: block;
+font-family: 'Poppins', sans-serif;
+font-size: 30px;
+color: #C68642;
+}
+.stat span 
+{ 
+color: #FFF8F0; 
+font-size: 14px; 
+}
+.quote {
+background-color: #FFFFFF;
+border-left: 4px solid #C68642;
+border-radius: 8px;
+padding: 24px;
+box-shadow: 0 4px 14px rgba(62, 39, 35, 0.08);
+}
+.quote p 
+{ 
+font-style: italic; 
+}
+.quote .name {
+font-style: normal;
+font-weight: 600;
+color: #3E2723;
+margin-bottom: 0;
+}
+footer {
+background-color: #3E2723;
+color: #FFF8F0;
+padding: 48px 0 24px;
+}
+.footer-inner {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+gap: 32px;
+}
+footer h3 
+{ 
+color: #C68642; 
+font-size: 18px; 
+}
+footer p, footer a 
+{ 
+color: #FFF8F0; 
+margin: 0 0 8px; 
+display: block; 
+}
+footer a:hover 
+{ 
+color: #C68642; 
+}
+.copyright {
+text-align: center;
+font-size: 14px;
+margin-top: 32px;
+padding-top: 16px;
+border-top: 1px solid rgba(255, 248, 240, 0.2);
+}
+.copyright p 
+{ margin: 0; 
+}
+@media (max-width: 600px) {
+h1 
+{ 
+font-size: 34px; 
+}
+h2 
+{ 
+font-size: 26px; 
+}
+.hero 
+{ 
+padding: 64px 20px; 
+}
+.section 
+{ 
+padding: 56px 0; 
+}
+.nav-inner 
+{ 
+justify-content: center; 
+}
+.about-text h2 
+{ 
+text-align: center; 
+}
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+<div class="container nav-inner">
+<a href="#home" class="logo">BREWBOX</a>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+<!-- Hero -->
+<header class="hero" id="home">
+<h1>Fresh Coffee, Delivered Monthly</h1>
+<p class="subheadline">Small-batch roasted beans sent to your door every month.</p>
+<a href="#features" class="cta">Start Your Box</a>
+</header>
+<!-- Features -->
+<section class="section" id="features">
+<div class="container">
+<div class="section-intro">
+<h2>Why You'll Love It</h2>
+<p>Everything you need for a better cup, without leaving home.</p>
+</div>
+<div class="grid">
+<div class="card">
+<div class="icon">☕</div>
+<h3>Small-Batch Roasted</h3>
+<p>Beans are roasted in small lots and shipped within days for peak flavour.</p>
+</div>
+<div class="card">
+<div class="icon">🚚</div>
+<h3>Free Doorstep Delivery</h3>
+<p>A new box arrives every month. Skip or pause anytime with one click.</p>
+</div>
+<div class="card">
+<div class="icon">🌱</div>
+<h3>Ethically Sourced</h3>
+<p>We buy directly from farms that pay fair wages and farm sustainably.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- About -->
+<section class="section about" id="about">
+<div class="container about-inner">
+<div class="about-text">
+<h2>Our Story</h2>
+<p>BREWBOX started with a simple idea: great coffee shouldn't depend on living near a great cafe. We partner with independent roasters to pick a fresh, interesting coffee each month and bring it to you.</p>
+<p>Whether you like it bold, smooth or somewhere in between, there's a box for you.</p>
+</div>
+<div class="about-stats">
+<div class="stat"><strong>10k+</strong><span>Happy members</span></div>
+<div class="stat"><strong>25</strong><span>Partner farms</span></div>
+<div class="stat"><strong>4.9★</strong><span>Average rating</span></div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="section" id="reviews">
+<div class="container">
+<div class="section-intro">
+<h2>What Members Say</h2>
+</div>
+<div class="grid">
+<div class="quote">
+<p>The freshest coffee I've had at home. My mornings got a lot better.</p>
+<p class="name">Aarav S.</p>
+</div>
+<div class="quote">
+<p>I love discovering a new origin every month. Never boring!</p>
+<p class="name">Priya M.</p>
+</div>
+<div class="quote">
+<p>Easy to set up, easy to pause. Delivery is always on time.</p>
+<p class="name">Rahul K.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer id="contact">
+<div class="container">
+<div class="footer-inner">
+<div>
+<h3>BREWBOX</h3>
+<p>Fresh Coffee, Delivered Monthly.</p>
+</div>
+<div>
+<h3>Contact</h3>
+<p>hello@brewbox.example</p>
+<p>+91 XXXXX XXXXX</p>
+</div>
+<div>
+<h3>Follow Us</h3>
+<a href="#">Instagram</a>
+<a href="#">Twitter / X</a>
+<a href="#">Facebook</a>
+</div>
+</div>
+<div class="copyright">
+<p>&copy; 2026 BREWBOX. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body>
+</html>
